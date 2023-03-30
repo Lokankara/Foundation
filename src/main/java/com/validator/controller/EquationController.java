@@ -43,7 +43,7 @@ public class EquationController {
         try {
             List<Equation> equations = equationService.find(FIND_ALL);
             model.addAttribute(EQUATION, equations);
-            log.info(found.formatted(equations.size()));
+            log.info(String.format(found, equations.size()));
             return ALL;
         } catch (Exception e) {
             log.error(e.getMessage());
@@ -84,7 +84,7 @@ public class EquationController {
                 log.info(rootBuilder.toString());
                 if (equation.addRoot(rootBuilder)) {
                     Equation update = equationService.update(equation);
-                    log.info(updated.formatted(update.toString()));
+                    log.info(String.format(updated, update.toString()));
                     return REDIRECT;
                 } else {
                     log.info(duplicate);
@@ -92,8 +92,8 @@ public class EquationController {
                     return REDIRECT + id;
                 }
             } else {
-                String message = "%s is not root of %s".formatted(root, expression);
-                log.info("%s solve Equation".formatted(message));
+                String message = String.format("%s is not root of %s", root, expression);
+                log.info(String.format("%s solve Equation",message));
                 model.addFlashAttribute(error, message);
                 return REDIRECT + id;
             }
@@ -123,7 +123,7 @@ public class EquationController {
                             .expression(equation)
                             .build();
                     solve(equationBuild);
-                    log.info(saved.formatted(equationService.save(equationBuild)));
+                    log.info(String.format(saved, equationService.save(equationBuild)));
                     return REDIRECT;
                 }
             } catch (Exception e) {
@@ -143,7 +143,7 @@ public class EquationController {
         try {
             List<Equation> singleRootEquations = equationService.find(FIND_BY_SINGLE_ROOT);
             model.addAttribute(EQUATION, singleRootEquations);
-            log.info(found.formatted(singleRootEquations.size()));
+            log.info(String.format(found, singleRootEquations.size()));
             return SEARCH;
         } catch (Exception e) {
             log.error(e.getMessage());

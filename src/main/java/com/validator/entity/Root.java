@@ -26,6 +26,6 @@ public class Root implements BaseEntity {
 
     @Override
     public String toString() {
-        return "Id#%d root: %s, %s".formatted(rootId, root, equation);
+        return String.format("Id#%d root: %s, %s", rootId, root, equation);
     }
 }

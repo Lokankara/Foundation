@@ -40,8 +40,7 @@ public class Equation implements BaseEntity {
 
     @Override
     public String toString() {
-        return "expression: %s, roots: %s"
-                .formatted(expression, getString());
+        return String.format("expression: %s, roots: %s", expression, getString());
     }
 
     public String getString() {
